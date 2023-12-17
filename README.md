@@ -23,3 +23,15 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python3 train.py ${data_dir} --arch narrepair --noi
     --apply-bert-init --activation-fn gelu --user-dir narrepair --mlm-layers 2 --batch-size 50 --max-epoch 100 \
     --src-with-werdur --werdur-max-predict 10
 ```
+
+### Inference
+```
+checkpoint_path=
+data_dir=
+src=buggy
+tgt=fixed
+CUDA_VISIBLE_DEVICES=0 python3 fairseq_cli/generate.py ${data_dir} --path ${checkpoint_path} \
+ --user-dir narrepair --task narrepair_task --remove-bpe --source-lang ${src} \
+ --target-lang ${tgt} --max-sentences 20  --iter-decode-max-iter 0 --iter-decode-force-max-iter \
+ --iter-decode-eos-penalty 0 --iter-decode-with-beam 1 --gen-subset test \
+```
