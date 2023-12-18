@@ -18,6 +18,20 @@ The code of paper "NARRepair:Non-Autoregressive Code Generation Model for Automa
      ├──narrepair/criterions: the code of criterions function of NARRepair
 
 ```
+### Preprocess
+```
+TEXT=
+dict_path1=
+
+python $EXP_HOME/preprocess.py --source-lang buggy  --target-lang fixed   \
+    --task translation \
+    --trainpref $TEXT/train --validpref $TEXT/valid \
+    --padding-factor 8 \
+    --src-with-werdur \
+    --destdir defect4j-bin \
+    --srcdict ${dict_path1} --tgtdict ${dict_path1} \
+    --workers 60
+```
 ### Train
 ```
 data_dir=
