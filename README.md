@@ -16,6 +16,8 @@ The code of paper "NARRepair:Non-Autoregressive Code Generation Model for Automa
      ├──narrepair/task: the code of task of NARRepair
      ├──narrepair/model: the code of NARRepair model
      ├──narrepair/criterions: the code of criterions function of NARRepair
+
+```
 ### Train
 ```
 data_dir=
