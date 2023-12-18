@@ -6,6 +6,16 @@ The code of paper "NARRepair:Non-Autoregressive Code Generation Model for Automa
 * Fairseq >=1.0.0
 * Tree-Sitter
 * Transformers>=4.10.0
+## Folder Structure
+ ```bash
+ ├── Dataset: data used for training and testing
+ ├── fairseq: the code of fairseq from
+     ├──models/nat/narrepair_nonautoregressive_transformer.py: the code of NARRepair model
+     ├──parser: the code of generating AST using Tree-Sitter tool
+ ├── narrepair: the code of NARRepair
+     ├──narrepair/task: the code of task of NARRepair
+     ├──narrepair/model: the code of NARRepair model
+     ├──narrepair/criterions: the code of criterions function of NARRepair
 ### Train
 ```
 data_dir=
