@@ -4,12 +4,6 @@ A PyTorch Implementation of paper "NARRepair:Non-Autoregressive Code Generation 
 Recent years have witnessed a surge of research efforts on Automatic Program Repair(APR), which promises to reduce software development costs and improve software reliability. With the advancement of deep learning techniques and particularly the recent emergence of large language models (LLMs), the performance of APR techniques has reached a new level. Previous deep learning-based APR techniques basically used a sequence-to-sequence model to modify program sentences in the Autoregressive(AR) manner, which predicts future values based on past values. The use of AR manner leads to the inability of real-time repair and huge time delays for repairing real-life complex bugs which typically involves modifications to long code sequence. These two negative consequences overshadow the widespread adoption of APR techniques in real-life software development. 
 To address the issues, we in this paper propose NARRepair, the first non-Autoregressive (NAR) code generation model for the APR task. NARRepair is inspired by the abundance of works in machine translation, which generate text in a NAR manner to improve the speed of model inference. However, the naive use of NAR manner in the APR task suffers from the issue of reduced patch quality. To adapt NAR manner for APR tasks, NARRepair features three major novelties. First, NARRepair is guided by repair actions to solve the problem of modifying the correct word into the wrong word. Second, NARRepair employs inter-word dependency information (based on Abstract Syntax Tree) to generate words in parallel while maintaining good fluency. Finally, NARRrepair obtains contextual information about words through two-stage decoding to improve patch accuracy. We evaluated NARRepair on the Defects4J v1.2 dataset, the Defects4J v2.0 dataset, and the QuixBugs dataset. The results show that 1) the inference speed of the NARRepair model has been increased by 5.4-11.8 times in the CPU environment and 6.2-16.1 times in the GPU environment, and 2) NARRepair has fixed 52, 34, and 16 bugs for Defect4J v1.2, Defect v2.0, and QuxiBugs respectively, which are 81\%, 84\%, and 80\% of the optimal model. The results demonstrate that our model can significantly improve the inference speed without obviously reducing the accuracy of program repair.
 ![the structure of NARRepair model.](narrepair.png)
-## Requirements
-* Python >= 3.7
-* Pytorch >= 1.5.0
-* Fairseq >=1.0.0
-* Tree-Sitter
-* Transformers>=4.10.0
 ## Folder Structure
 Our code is written based on the Fairseq framework. Here we only describe the files related to the implementation of our model. If you want to know about other files, please refer to Fairseq's documentation[https://fairseq.readthedocs.io/en/latest/index.html]
  ```bash
@@ -20,21 +14,46 @@ Our code is written based on the Fairseq framework. Here we only describe the fi
  ├── narrepair: the code of NARRepair
      ├──narrepair/task: the code of task of NARRepair
      ├──narrepair/model: the code of NARRepair model
-     ├──narrepair/criterions: the code of criterions function of NARRepair
-
+     ├──narrepair/criterions: the code of criterions of NARRepair
+ ├── narutils: Data preprocessing file
+ ├── fairseq_cli: post processing files
 ```
+## Requirements
+* Conda
+  * install conda: [https://conda.io/projects/conda/en/latest/user-guide/install/index.html](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
+  * Create a new conda environment:
+      * if you are running with GPU: 
+        ```
+        conda env create -f environment-gpu.yml
+        conda activate narrepair
+        ```
+        Dependencies include support for CUDA_11.4. If you are using a different CUDA version update the dependencies accordingly.
+      * if you are running with CPU:   
+        ```
+        conda env create -f environment-cpu.yml
+        conda activate narrepair
+* Dataset
+  * Install Defect4J from: [https://github.com/rjust/defects4j]
+  * Install QuixBugs from: [https://jkoppel.github.io/QuixBugs/]
+## Dependency
+* Python >= 3.7
+* Pytorch >= 1.5.0
+* Fairseq >=1.0.0
+* Tree-Sitter
+* Transformers>=4.10.0
+
+
 ## Preprocess
 ```
 TEXT=
-dict_path1=
-
-python $EXP_HOME/preprocess.py --source-lang buggy  --target-lang fixed   \
+dict_path=
+python ./narutils/preprocess.py --source-lang buggy  --target-lang fixed   \
     --task translation \
     --trainpref $TEXT/train --validpref $TEXT/valid \
     --padding-factor 8 \
     --src-with-werdur \
     --destdir defect4j-bin \
-    --srcdict ${dict_path1} --tgtdict ${dict_path1} \
+    --srcdict ${dict_path} --tgtdict ${dict_path} \
     --workers 60
 ```
 ## Train
