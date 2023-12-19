@@ -1,5 +1,6 @@
 # NARRepair
 The code of paper "NARRepair:Non-Autoregressive Code Generation Model for Automatic Program Repair"
+![the structure of NARRepair model.](narrepair.png)
 ### Requirements
 * Python >= 3.7
 * Pytorch >= 1.5.0
