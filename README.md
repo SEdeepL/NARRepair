@@ -11,6 +11,7 @@ To address the issues, we in this paper propose NARRepair, the first non-Autoreg
 * Tree-Sitter
 * Transformers>=4.10.0
 ## Folder Structure
+Our code is written based on the Fairseq framework. Here we only describe the files related to the implementation of our model. If you want to know about other files, please refer to Fairseq's documentation[https://fairseq.readthedocs.io/en/latest/index.html]
  ```bash
  ├── Dataset: data used for training and testing
  ├── fairseq: the code of fairseq from
