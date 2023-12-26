@@ -48,8 +48,6 @@ Our code is written based on the Fairseq framework. Here we only describe the fi
 * Fairseq >=1.0.0
 * Tree-Sitter
 * Transformers>=4.10.0
-
-
 ## Preprocess
 Preprocessing is divided into two steps: (1) Obtain the repair actions of the training data (2) Convert the data into binary files.
 ### Obtain the repair actions
@@ -57,7 +55,11 @@ We divide all repair actions into: "insert", "delete", "replace", "keep". And we
 ```
 python repairact.py
 ```
+Lines 57 and 61 in the repairact.py file represent the paths of the original error file and the correct file, and lines 68 and 73 represent the output file path. You can modify it according to your own situation.
+### Convert the data into binary files
+The data needs to be converted into binary files in order to train the model.
 
+The parameter data_dir represents the data set path, dict_path represents the dictionary path, and destdir represents the binary file path.
 ```
 data_dir="data storage directory"
 dict_path="the location of the dictionary file"
@@ -71,6 +73,9 @@ python ./narutils/preprocess.py --source-lang buggy  --target-lang fixed   \
     --workers 60
 ```
 ## Train
+Use the obtained binaries to train the model. We trained the model on 4 NVIDIA 3090 environments. The following parameters can be modified according to your actual situation.
+
+The parameter bin_data_dir represents the path to the binary file, and save_path represents the path where the trained model is saved.
 ```
 bin_data_dir="preprocessed binary data"
 save_path="the storage location of the trained model"
