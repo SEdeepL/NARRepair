@@ -56,7 +56,10 @@ We divide all repair actions into: "insert", "delete", "replace", "keep". And we
 python repairact.py
 ```
 Lines 57 and 61 in the repairact.py file represent the paths of the original error file and the correct file, and lines 68 and 73 represent the output file path. You can modify it according to your own situation.
-![repair actions.](repairact.png)
+<p align="center">
+<img src="repairact.png" width="60%" height="40%">
+</p>
+
 ### Convert the data into binary files
 The data needs to be converted into binary files in order to train the model.
 
