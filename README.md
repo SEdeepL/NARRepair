@@ -20,6 +20,7 @@ Our code is written based on the Fairseq framework. Here we only describe the fi
      ├──narrepair/criterions: the code of criterions of NARRepair
  ├── narutils: Data preprocessing files
  ├── fairseq_cli: post processing files
+ ├── repairact.py: get repair action
 ```
 ## Requirements
 * Conda
