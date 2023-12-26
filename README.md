@@ -37,8 +37,11 @@ Our code is written based on the Fairseq framework. Here we only describe the fi
         conda env create -f environment-cpu.yml
         conda activate narrepair
 * Dataset
-  * Install Defect4J from: [https://github.com/rjust/defects4j]
-  * Install QuixBugs from: [https://jkoppel.github.io/QuixBugs/]
+  * Train dataset
+      * Training data can be obtained from：[https://github.com/ASSERT-KTH/SelfAPR]
+  * Test dataset
+      * Install Defect4J from: [https://github.com/rjust/defects4j]
+      * Install QuixBugs from: [https://jkoppel.github.io/QuixBugs/]
 ## Dependency
 * Python >= 3.7
 * Pytorch >= 1.5.0
