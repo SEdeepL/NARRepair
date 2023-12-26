@@ -9,7 +9,7 @@ without obviously reducing the accuracy of program repair.
 ![the structure of NARRepair model.](narrepair.png)
 ## Folder Structure
 Our code is written based on the Fairseq framework. Here we only describe the files related to the implementation of our model. If you want to know about other files, please refer to Fairseq's documentation[https://fairseq.readthedocs.io/en/latest/index.html]
- ```bash
+```
  ├── Dataset: data used to train and test
  ├── fairseq: the code of fairseq frame
      ├──models/nat/narrepair_nonautoregressive_transformer.py: the code of NARRepair model
@@ -18,7 +18,7 @@ Our code is written based on the Fairseq framework. Here we only describe the fi
      ├──narrepair/task: the code of task of NARRepair
      ├──narrepair/model: the code of NARRepair model
      ├──narrepair/criterions: the code of criterions of NARRepair
- ├── narutils: Data preprocessing file
+ ├── narutils: Data preprocessing files
  ├── fairseq_cli: post processing files
 ```
 ## Requirements
