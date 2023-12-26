@@ -48,8 +48,8 @@ Our code is written based on the Fairseq framework. Here we only describe the fi
 
 ## Preprocess
 ```
-TEXT=
-dict_path=
+data_dir="data storage directory"
+dict_path="the location of the dictionary file"
 python ./narutils/preprocess.py --source-lang buggy  --target-lang fixed   \
     --task translation \
     --trainpref $TEXT/train --validpref $TEXT/valid \
@@ -61,9 +61,9 @@ python ./narutils/preprocess.py --source-lang buggy  --target-lang fixed   \
 ```
 ## Train
 ```
-data_dir=
-save_path=
-CUDA_VISIBLE_DEVICES=0,1,2,3 python3 train.py ${data_dir} --arch narrepair --noise full_mask --share-all-embeddings \
+bin_data_dir="preprocessed binary data"
+save_path="the storage location of the trained model"
+CUDA_VISIBLE_DEVICES=0,1,2,3 python3 train.py ${bin_data_dir} --arch narrepair --noise full_mask --share-all-embeddings \
     --criterion narrepair_loss --label-smoothing 0.1 --lr 5e-5 --warmup-init-lr 1e-7 --stop-min-lr 1e-9 \
     --lr-scheduler inverse_sqrt --warmup-updates 4000 --optimizer adam --adam-betas '(0.9, 0.999)' \
     --adam-eps 1e-6 --task narrepair_task --max-tokens 50000 --weight-decay 0.01 --dropout 0.1 \
@@ -79,8 +79,8 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python3 train.py ${data_dir} --arch narrepair --noi
 
 ## Inference
 ```
-checkpoint_path=
-data_dir=
+checkpoint_path="the storage location of the trained model"
+data_dir="the storage location of the test dataset"
 src=buggy
 tgt=fixed
 CUDA_VISIBLE_DEVICES=0 python3 fairseq_cli/generate.py ${data_dir} --path ${checkpoint_path} \
