@@ -48,6 +48,11 @@ Our code is written based on the Fairseq framework. Here we only describe the fi
 * Fairseq >=1.0.0
 * Tree-Sitter
 * Transformers>=4.10.0
+## Main code introduction
+In order to allow readers to read the code of our model more accurately, we briefly introduce the main codes corresponding to the model structure.
+
+The NARRepair model mainly consists of four modules: (1)code encoder, (2)repair action predictor, (3)inter-word dependency extractor and (4)two-stage decoder.
+* (1)code encoder: this module will use the encoder part of the transformers model that comes with fairseq. 
 ## Preprocess
 Preprocessing is divided into two steps: (1) Obtain the repair actions of the training data (2) Convert the data into binary files.
 ### Obtain the repair actions
@@ -98,6 +103,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python train.py ${bin_data_dir} --arch narrepair --
 ```
 
 ## Inference
+During the inference phase, we use the trained model to fix the buggy program. The parameter checkpoint_path represents the storage path of the trained model, and data_dir represents the test data path.
 ```
 checkpoint_path="the storage location of the trained model"
 data_dir="the storage location of the test dataset"
