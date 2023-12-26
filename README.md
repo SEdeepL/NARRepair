@@ -72,7 +72,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python3 train.py ${bin_data_dir} --arch narrepair -
     --max-source-positions 6000 --max-target-positions 6000 --seed 0 --clip-norm 5 \
     --save-dir ${save_path} --src-embedding-copy --length-loss-factor 0.05 --log-interval 100 \
     --eval-bleu --eval-bleu-args '{"iter_decode_max_iter": 0, "iter_decode_with_beam": 1}' \
-    --eval-tokenized-bleu --eval-bleu-remove-bpe --best-checkpoint-metric bleu \
+    --eval-tokenized-bleu --eval-bleu-remove-bpe \
     --maximize-best-checkpoint-metric --decoder-learned-pos --encoder-learned-pos \
     --apply-bert-init --activation-fn gelu --user-dir narrepair --mlm-layers 2 --batch-size 50 --max-epoch 100 \
     --src-with-werdur --werdur-max-predict 10
