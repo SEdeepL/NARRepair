@@ -52,7 +52,11 @@ Our code is written based on the Fairseq framework. Here we only describe the fi
 In order to allow readers to read the code of our model more accurately, we briefly introduce the main codes corresponding to the model structure.
 
 The NARRepair model mainly consists of four modules: (1)code encoder, (2)repair action predictor, (3)inter-word dependency extractor and (4)two-stage decoder.
-* (1)code encoder: this module will use the encoder part of the transformers model that comes with fairseq. 
+* (1)NARRepair model: the code to implement the NARRepair model is the NARRepair class in the NARRepair/narrepair/models/narrepair.py file
+* (2)code encoder: this module will use the encoder part of the transformers model that comes with fairseq. Implemented in the NATransformerEncoder class in the fairseq/models/nat/narrepair_nonautoregressive_transformer file.
+* (3)repair action predictor: Implemented in the DurationPredictor class in the fairseq/models/nat/narrepair_nonautoregressive_transformer file.
+* (4)inter-word dependency extractor:Implemented in the Biaffine class and ast_link function in the fairseq/models/nat/narrepair_nonautodegrasive_transformer file.
+* (5)two-stage decoder：Implemented in the NATransformerDecoder class in the fairseq/models/nat/narrepair_nonautoregressive_transformer file.
 ## Preprocess
 Preprocessing is divided into two steps: (1) Obtain the repair actions of the training data (2) Convert the data into binary files.
 ### Obtain the repair actions
